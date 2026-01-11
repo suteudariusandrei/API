@@ -9,11 +9,16 @@ namespace API_Restaurant.Data
 {
     public class WebAPIContext : DbContext
     {
-        public WebAPIContext (DbContextOptions<WebAPIContext> options)
+        public WebAPIContext(DbContextOptions<WebAPIContext> options)
             : base(options)
         {
         }
 
         public DbSet<API_Restaurant.Models.ComenziList> ComenziList { get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<API_Restaurant.Models.ComenziList>().ToTable("Comanda");
+        }
     }
 }
